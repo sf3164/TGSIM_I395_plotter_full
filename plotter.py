@@ -1,3 +1,5 @@
+#4/2 fixed plot range
+
 import pandas as pd
 import plotly.graph_objects as go
 import os
@@ -6,12 +8,18 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 
 # File Paths
-TRAJECTORY_FILE = "TGSIM_I395.csv"
 
-CENTERLINE_FILE = os.path.join("boundaries", "I395_boundaries.csv")
+TRAJECTORY_FILE = "updated_TGSIM_I395.csv" #use the updated dataset with (corrected lane id and) flipped and rotated
+
+CENTERLINE_FILE = os.path.join("boundaries", "updated_I395_boundaries.csv") #use the updated flipped and rotataed boundary that is flipped
+
+
 
 # === Load trajectory data ===
 traj_df = pd.read_csv(TRAJECTORY_FILE)
+
+# Apply the swap to the trajectory dataframe
+#swap_x_y_columns(traj_df)
 
 # === Initialize Tkinter window ===
 root = tk.Tk()
@@ -111,7 +119,7 @@ def plot_trajectories():
             if lane.startswith("x"):
                 lane_number_raw = lane[1]  # e.g., "1", "2", ...
                 lane_centerline_column_x = f"x{lane_number_raw}"
-                lane_centerline_column_y = f"y"
+                lane_centerline_column_y = f"y{lane_number_raw}"
         
                 if lane_centerline_column_x in centerline_df.columns and lane_centerline_column_y in centerline_df.columns:
                     lane_centerline = centerline_df[[lane_centerline_column_x, lane_centerline_column_y]].dropna()
@@ -120,10 +128,10 @@ def plot_trajectories():
                     try:
                         lane_index = int(lane_number_raw)
                         logical_lane_number = -1 * (6 - lane_index)
-                        label_text = f"Lane {logical_lane_number}<br>left boundary"
+                        label_text = f"Lane {logical_lane_number}<br>right boundary"
                     except:
                         logical_lane_number = lane_number_raw  # fallback if conversion fails
-                        label_text = f"Lane {logical_lane_number}<br>left boundary"
+                        label_text = f"Lane {logical_lane_number}<br>right boundary"
         
                     # Plot the lane boundary
                     fig.add_trace(go.Scatter(
@@ -131,13 +139,13 @@ def plot_trajectories():
                         y=lane_centerline[lane_centerline_column_y]*0.3,
                         mode="lines",
                         line=dict(color="#D3D3D3", width=1.5),
-                        name=f"Lane {logical_lane_number}<br>left boundary"
+                        name=f"Lane {logical_lane_number}<br>right boundary"
                     ))
         
                     # Add label at the end of the centerline
-                    max_y_idx = lane_centerline[lane_centerline_column_y].idxmax()
-                    end_x = lane_centerline.at[max_y_idx, lane_centerline_column_x]*0.3
-                    end_y = lane_centerline.at[max_y_idx, lane_centerline_column_y]*0.3
+                    max_x_idx = lane_centerline[lane_centerline_column_x].idxmax()
+                    end_x = lane_centerline.at[max_x_idx, lane_centerline_column_x]*0.3
+                    end_y = lane_centerline.at[max_x_idx, lane_centerline_column_y]*0.3
 
                     fig.add_trace(go.Scatter(
                         x=[end_x],
@@ -174,7 +182,7 @@ def plot_trajectories():
         fig.update_layout(
             title="Vehicle Trajectories",
             xaxis=dict(range=[0, max_x]),
-            yaxis=dict(range=[0, max_y]),
+            yaxis=dict(range=[0, max_x]),
             xaxis_title="X Coordinate",
             yaxis_title="Y Coordinate",
             legend_title="Legend",

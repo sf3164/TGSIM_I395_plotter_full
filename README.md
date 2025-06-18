@@ -17,8 +17,7 @@ This repository contains a Python-based interactive GUI tool for plotting vehicl
 ## Example Output
 
 The tool produces an HTML file (`I395_Full_Plot.html`) displaying the interactive plot.
-![Screenshot 2025-06-03 at 3 07 39 PM](https://github.com/user-attachments/assets/003550f0-2c54-4dc0-9230-c2dff8f1ffdb)
-
+<img width="1304" alt="Screenshot 2025-06-18 at 11 07 56 AM" src="https://github.com/user-attachments/assets/8b09275c-724a-404c-913c-f3a2c28c05d6" />
 
 
 ## File Structure
@@ -54,8 +53,8 @@ pip install pandas plotly matplotlib
 ## How to Use
 
 1. Use the updated TGSIM I395 maindatasets and the boundary file in this repo.
-2. Rename the main dataset to TGSIM_I395.csv and move it to the same directory as the `plotter.py` script.
-3. In the same directory as `plotter.py`, create a new folder named `boundaries`, and move all the centerline files into this folder.
+2. Make sure the updated main dataset TGSIM_I395.csv is in the same directory as the `plotter.py` script.
+3. Make sure the folder `boundaries` contains the updated boundary file, and is in the same directory as `plotter.py`
 4. Launch the Python to run `plotter.py` and run all cells.
 5. A GUI window will appear.
 6. Choose a **time window**, **initial lane**, and **exit lane** (or leave as "all").

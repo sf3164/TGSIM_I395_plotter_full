@@ -25,9 +25,9 @@ The tool produces an HTML file (`I395_Full_Plot.html`) displaying the interactiv
 
 ```bash
 .
-├── TGSIM_I395.csv            # Main trajectory dataset
+├── updated_TGSIM_I395.csv            # Main trajectory dataset
 ├── boundaries/
-│   ├── I395_boundaries.csv
+│   ├── updated_I395_boundaries.csv
 ├── plotter.py           # Python file with Tkinter GUI and plotting code
 └── README.md
 ```
@@ -53,8 +53,7 @@ pip install pandas plotly matplotlib
 
 ## How to Use
 
-1. Download the TGSIM I395 main dataset and the boundaries files from the following website:
-https://data.transportation.gov/Automobiles/Third-Generation-Simulation-Data-TGSIM-I-395-Traje/97n2-kuqi/about_data
+1. Use the updated TGSIM I395 maindatasets and the boundary file in this repo.
 2. Rename the main dataset to TGSIM_I395.csv and move it to the same directory as the `plotter.py` script.
 3. In the same directory as `plotter.py`, create a new folder named `boundaries`, and move all the centerline files into this folder.
 4. Launch the Python to run `plotter.py` and run all cells.

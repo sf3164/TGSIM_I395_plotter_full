@@ -52,9 +52,9 @@ pip install pandas plotly matplotlib
 
 ## How to Use
 
-1. Use the updated TGSIM I395 maindatasets and the boundary file in this repo.
-2. Make sure the updated main dataset TGSIM_I395.csv is in the same directory as the `plotter.py` script.
-3. Make sure the folder `boundaries` contains the updated boundary file, and is in the same directory as `plotter.py`
+1. Use the updated TGSIM I395 maindatasets and the boundary file.
+2. Make sure the updated main dataset updated_TGSIM_I395.csv is in the same directory as the `plotter.py` script.
+3. Create a folder `boundaries` containing the updated boundary file updated_I395_boundaries.csv, and make sure the folder is in the same directory as `plotter.py`
 4. Launch the Python to run `plotter.py` and run all cells.
 5. A GUI window will appear.
 6. Choose a **time window**, **initial lane**, and **exit lane** (or leave as "all").
